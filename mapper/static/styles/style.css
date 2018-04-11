@@ -1,0 +1,58 @@
+.contaner {
+max-width: 1540px;
+}
+.floor_map {
+  display: inline-block;
+  margin:20px;
+  width: 1500px;
+  height: 715px;
+}
+.map_size{
+    width: 1500px;
+	height: 715px;
+	position: absolute;
+}
+.green_icon{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 55px;
+  background: url('green_icon.png');
+  opacity: 0.8;
+}
+.red_icon{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 55px;
+  background: url('red_icon.png');
+  opacity: 0.8;
+}
+.orange_icon{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 55px;
+  background: url('orange_icon.png');
+  opacity: 0.8;
+}
+.warning_icon{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 55px;
+  background: url('warning_icon.png');
+  opacity: 1;
+}
+
+.hide {opacity: 0;
+cursor: default;}
+
+.mainText{
+  pointer-events: none;
+  font-family: 'Roboto Condensed';
+  sans-serif;
+  color: black;
+  text-align: left;
+  font-size: 100%;
+}

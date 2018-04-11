@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Workspaces list</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Workspaces list</a></h1>
+        </div>
+	
+	<div>
+		<table style = "border: 1px solid black;">
+		{% for space in workspaces %}
+		<tr>
+		<td>  {{ space.workspaceNum }} </td>
+		<td>    {{ space.ip }} </td>
+		<td>    {{ space.status }} </td>
+		<td>    {{ space.xPos }} </td>
+		<td>    {{ space.yPos }} </td>
+		{% endfor %}
+		</tr> 
+	</div>
+	</table>
+
+    </body>
+</html>
