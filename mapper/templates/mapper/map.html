@@ -19,24 +19,24 @@
 		{% if space.status == 0 %}
 		    <div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 
 	 	 	<div id="onclick-menu-content">
-				<div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
-				<div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
+				<div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+				<div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
 			</div>
 		    </div>
 		{% endif %}
 		{% if space.status == 1 %}
 		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon" title="{{ space.login }}"> 
 			<div id="onclick-menu-content">
-                                <div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
-                                <div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
                         </div>
 		</div>
 		{% endif %}
 		{% if space.status == 2 %}
 		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} orange_icon" title="Статус неопределен">
                         <div id="onclick-menu-content">                        
-                                <div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
-                                <div class="menu-item" onclick="location.href='http://192.168.20.34:8000/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
                         </div>
 		</div>
 		{% endif %}
