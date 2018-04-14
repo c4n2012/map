@@ -3,6 +3,13 @@ window.onload=function(){
 const text  = document.querySelector('.mainText');
 const mainContainer  = document.querySelector('.container');
 
+$(".container").on("dblclick", function(){
+    var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) + 1;
+    var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) + 1;
+//    text.textContent = `MouseX: ${clickX},  MouseY: ${clickY}`;
+    window.open(`/admin/mapper/workspace/add/?xPos=${clickX-20};yPos=${clickY-55}`,"_self");
+});
+
 mainContainer.addEventListener("mousemove", runEvent);
 //event handler
 function runEvent(e){
