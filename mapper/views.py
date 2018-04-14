@@ -24,8 +24,8 @@ def show_dynamic_map(request):
         raw += ":hover{ transform: translate("
         raw += str(workspace.xPos)
         raw += "px, "
-        raw += str(workspace.yPos-3)
-        raw +="px) scale(1.1,1.1); z-index: 100; opacity: 1;}"
+        raw += str(workspace.yPos-5)
+        raw +="px) scale(1.1,1.2); opacity: 1;}"
         f.write(raw + '\n')
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 
