@@ -52,10 +52,24 @@ def css_maker(cssfile,workspaces_set):
 def map2R(request):
     stage='2R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
-    f = open('mapper/static/styles/dynamic.css', 'w')
+    f = open('mapper/static/styles/dynamic'+stage+'.css', 'w')
     css_maker(f,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 
+def map2R_admin(request):
+    stage='2R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    f = open('mapper/static/styles/dynamic'+stage+'.css', 'w')
+    css_maker(f,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+
+
+def map2L(request):
+    stage='2L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    f = open('mapper/static/styles/dynamic'+stage+'.css', 'w')
+    css_maker(f,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 
 def test(request):
     workspaces_set = Workspace.objects.filter(stage__contains='2R').order_by('id')

@@ -3,6 +3,6 @@
 __pycache__
 myvenv
 db.sqlite3
-dynamic.css
+mapper/static/styles/dynamic??.css
 .DS_Store
 runweb.sh
