@@ -5,9 +5,11 @@
   <link rel="stylesheet" href="static/styles/dynamic.css">
   <link rel="stylesheet" href="static/styles/content_menu.css">
   <meta charset="UTF-8">
-  <title>map view</title>
+  <title>map test</title>
   <script type="text/javascript" src="static/scripts/jquery-3.3.1.min.js"> 
   </script>
+ <script type="text/javascript" src="static/scripts/coordinates.js">
+ </script>
 </head>
 <body>
   <div class="container">
@@ -16,27 +18,32 @@
 	 {% for space in workspaces_set %} 
 		{% if space.status == 0 %}
 		    <div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 
-
+	 	 	<div id="onclick-menu-content">
+				<div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+				<div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
+			</div>
 		    </div>
 		{% endif %}
 		{% if space.status == 1 %}
 		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon" title="{{ space.login }}"> 
 			<div id="onclick-menu-content">
-
-
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
                         </div>
 		</div>
 		{% endif %}
 		{% if space.status == 2 %}
 		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} orange_icon" title="Статус неопределен">
                         <div id="onclick-menu-content">                        
-
-
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/change/';">Редактировать</div>
+                                <div class="menu-item" onclick="location.href='/admin/mapper/workspace/{{ space.id }}/delete/';">Удалить</div>
                         </div>
 		</div>
 		{% endif %}
 	 {% endfor %}
 	</div>
   </div>
+<h1 class = "mainText"> Coordinates of your mouse: hover over this container </h1>
+<p> Двойной клик на точке для создания рабочего места</p>
 </body>
 </html>
