@@ -15,12 +15,12 @@
 	 <img class="map_size" src="static/images/map{{ workspaces_set.first.stage }}_izometr.png" >
 	 {% for space in workspaces_set %} 
 		{% if space.status == 0 %}
-		    <div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 
+		    <div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 
 
 		    </div>
 		{% endif %}
 		{% if space.status == 1 %}
-		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon" title="{{ space.login }}"> 
+		<div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon" title="{{ space.login }}"> 
 			<div id="onclick-menu-content">
 
 
@@ -28,7 +28,7 @@
 		</div>
 		{% endif %}
 		{% if space.status == 2 %}
-		<div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} orange_icon" title="Статус неопределен">
+		<div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} orange_icon" title="Статус неопределен">
                         <div id="onclick-menu-content">                        
 
 

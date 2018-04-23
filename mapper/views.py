@@ -29,6 +29,7 @@ def css_maker(stage,workspaces_set):
     cssfile.close()
      
 
+
 def map2R(request):
     stage='2R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')

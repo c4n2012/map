@@ -19,6 +19,7 @@ max-width: 1540px;
   height: 60px;
   background: url('green_icon.png');
   opacity: 0.9;
+  outline-color: transparent;
 }
 .red_icon{
   position: absolute;
@@ -27,6 +28,7 @@ max-width: 1540px;
   height: 60px;
   background: url('red_icon.png');
   opacity: 0.9;
+  outline-color: transparent;
 }
 .orange_icon{
   position: absolute;
@@ -35,6 +37,7 @@ max-width: 1540px;
   height: 60px;
   background: url('orange_icon.png');
   opacity: 0.9;
+  outline-color: transparent;
 }
 .warning_icon{
   position: absolute;
@@ -43,6 +46,7 @@ max-width: 1540px;
   height: 60px;
   background: url('warning_icon.png');
   opacity: 0.9;
+  outline-color: transparent;
 }
 
 .hide {opacity: 0;
