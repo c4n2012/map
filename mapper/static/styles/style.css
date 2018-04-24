@@ -60,3 +60,54 @@ cursor: default;}
   text-align: left;
   font-size: 100%;
 }
+input[type=search] {
+
+  background: #fefefe;
+  padding-left:1em;
+  padding-right: 30px;
+  border: 1px solid SlateGrey;
+  width: 200px;
+  height: 30px;
+  border-radius: 15px;
+  color: SlateGrey;
+  transition: .5s ease-in-out;
+  -webkit-appearance: none;
+}
+input:focus {
+  width: 40%;
+  border-radius: 5px;
+}
+button {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  padding: 0;
+  margin-left: -30px;
+  border: 0;
+  background: none;
+  opacity: .6;
+  transition: .5s ease-in-out;
+  vertical-align: bottom;
+}
+input:focus + button {
+  opacity: 1;
+}
+button:after, button:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid SlateGrey;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+button:before {
+  content: "";
+  width: 0;
+  height: 7px;
+  border-radius: 0 0 1px 1px;
+  transform: rotate(-45deg);
+  left: 12px;
+  top: 13px;
+}

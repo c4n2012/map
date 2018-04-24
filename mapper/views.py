@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Workspace
+from .models import Workspace, Worker
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 
@@ -28,8 +30,6 @@ def css_maker(stage,workspaces_set):
         cssfile.write(raw + '\n')
     cssfile.close()
      
-
-
 def map2R(request):
     stage='2R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
@@ -47,3 +47,26 @@ def map2L(request):
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+
+def get_worker(request):
+  if request.is_ajax():
+    q = request.GET.get('term', '')
+    sort_type = 1 # sort by surname
+    workers = Worker.objects.filter(surname__contains=q).order_by('surname')
+    if workers.count() == 0 :
+        workers = Worker.objects.filter(login__contains=q).order_by('login')
+        sort_type = 2 # sort by login  
+    
+    results = []
+    for wkr in workers:
+        workers_json = {}
+        if sort_type == 1:
+            workers_json = wkr.surname + " " + wkr.name + " " + wkr.login
+        else: 
+            workers_json = wkr.login + " " + wkr.surname + " " + wkr.name 
+        results.append(workers_json)
+    data = json.dumps(results)
+  else:
+    data = 'fail'
+  mimetype = 'application/json'
+  return HttpResponse(data, mimetype)

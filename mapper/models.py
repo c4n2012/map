@@ -29,3 +29,8 @@ class Workspace(models.Model):
 
     def __str__(self):
         return self.stage+str(self.id)+" ........ "+str(self.ip)+" ......... "+str(self.phone)
+
+class Worker(models.Model):
+    login = models.CharField(max_length=20,blank=True)
+    name = models.CharField(max_length=20,blank=True)
+    surname = models.CharField(max_length=20,blank=True)
