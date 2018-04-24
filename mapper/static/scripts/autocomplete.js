@@ -4,11 +4,11 @@
       select: function (event, ui) { //item selected
         AutoCompleteSelectHandler(event, ui)
       },
-      minLength: 2,
+      minLength: 3,
     });
   });
 
   function AutoCompleteSelectHandler(event, ui)
   {
-    var selectedObj = ui.item;
+    var selectedObj = encodeURI(ui.item);
   }

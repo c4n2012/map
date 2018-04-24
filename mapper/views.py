@@ -53,7 +53,7 @@ def get_worker(request):
   if request.is_ajax():
     q = request.GET.get('term', '')
     sort_type = 1 # sort by surname
-    workers = Worker.objects.filter(surname__contains=q).order_by('surname')
+    workers = Worker.objects.filter(surname__contains=q.capitalize()).order_by('surname')
     if workers.count() == 0 :
         workers = Worker.objects.filter(login__contains=q).order_by('login')
         sort_type = 2 # sort by login  
