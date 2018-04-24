@@ -4,13 +4,14 @@ from django.http import HttpResponse
 import json
 
 # Create your views here.
+css_file_path = 'mapper/static/styles/dynamic'
 
 def workspaces_list(request):
     workspaces = Workspace.objects.filter(stage__contains='2R').order_by('id')
     return render(request, 'mapper/workspaces_list.html', {'workspaces' : workspaces})
 
 def css_maker(stage,workspaces_set):
-    cssfile = open('mapper/static/styles/dynamic'+stage+'.css', 'w')
+    cssfile = open(css_file_path + stage + '.css', 'w')
     for workspace in workspaces_set:
         raw = ".workspace-position-" 
         raw += workspace.stage + str(workspace.id)
