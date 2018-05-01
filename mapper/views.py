@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Workspace, Worker
 from django.http import HttpResponse
-import json
+import json, re
 
 # Create your views here.
 css_file_path = 'mapper/static/styles/dynamic'
@@ -50,10 +50,10 @@ def map2L(request):
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 
 def get_worker(request):
-  if request.is_ajax():
-    q = request.GET.get('term', '')
-    sort_type = 1 # sort by surname
-    workers = Worker.objects.filter(surname__contains=q.capitalize()).order_by('surname')[:20]
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        sort_type = 1 # sort by surname
+        workers = Worker.objects.filter(surname__contains=q.capitalize()).order_by('surname')[:20]
     if workers.count() == 0 :
         workers = Worker.objects.filter(login__contains=q).order_by('login')[:20]
         sort_type = 2 # sort by login  
@@ -62,12 +62,41 @@ def get_worker(request):
     for wkr in workers:
         workers_json = {}
         if sort_type == 1:
-            workers_json = wkr.surname + " " + wkr.name + " " + wkr.login
+            workers_json = wkr.surname + " " + wkr.name + " - " + wkr.login
         else: 
-            workers_json = wkr.login + " " + wkr.surname + " " + wkr.name 
+            workers_json = wkr.surname + " " + wkr.name + " - " + wkr.login
+            # workers_json = wkr.login + " - " + wkr.surname + " " + wkr.name 
         results.append(workers_json)
     data = json.dumps(results)
-  else:
-    data = 'fail'
-  mimetype = 'application/json'
-  return HttpResponse(data, mimetype)
+    # if data.count() == 0:
+    #     data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+def get_worker_position(request):
+    if request.method == "GET":
+        worker_login_req = request.GET.get('login', '').split(" - ") # получаем список из реквеста чтоб использовать логин для запроса в БД
+        reg = re.compile('[^a-z.]') # разрешенные символы
+        # print (reg.sub('',q[1]))
+        worker_login_req = reg.sub('',worker_login_req[1]) # удаление из  логина плохих символов
+        workspaces_set = Workspace.objects.filter(login__contains=worker_login_req).order_by('-xPos').order_by('yPos')
+        print (workspaces_set)
+      #  worker_place = Workspace.objects.filter(login__contains=q).order_by('id')
+    # if workers.count() == 0 :
+    #     workers = Worker.objects.filter(login__contains=q).order_by('login')[:20]
+    #     sort_type = 2 # sort by login  
+    
+    # results = []
+    # for wkr in workers:
+    #     workers_json = {}
+    #     if sort_type == 1:
+    #         workers_json = wkr.surname + " " + wkr.name + " " + wkr.login
+    #     else: 
+    #         workers_json = wkr.login + " " + wkr.surname + " " + wkr.name 
+    #     results.append(workers_json)
+    # data = json.dumps(results)
+    # if data.count() == 0:
+    
+    data = workspaces_set.stage + " " + workspaces_set.xPos + " " + workspaces_set.yPos
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

@@ -6,3 +6,4 @@ db.sqlite3
 mapper/static/styles/dynamic??.css
 .DS_Store
 runweb.sh
+mainsite/settings.py
