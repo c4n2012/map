@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Workspace, Worker
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import json, re
+from django.urls import reverse
 
 # Create your views here.
 css_file_path = 'mapper/static/styles/dynamic'
@@ -33,6 +34,12 @@ def css_maker(stage,workspaces_set):
      
 def map2R(request):
     stage='2R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+
+def map3R(request):
+    stage='3R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
@@ -80,23 +87,11 @@ def get_worker_position(request):
         # print (reg.sub('',q[1]))
         worker_login_req = reg.sub('',worker_login_req[1]) # удаление из  логина плохих символов
         workspaces_set = Workspace.objects.filter(login__contains=worker_login_req).order_by('-xPos').order_by('yPos')
-        print (workspaces_set)
-      #  worker_place = Workspace.objects.filter(login__contains=q).order_by('id')
-    # if workers.count() == 0 :
-    #     workers = Worker.objects.filter(login__contains=q).order_by('login')[:20]
-    #     sort_type = 2 # sort by login  
-    
-    # results = []
-    # for wkr in workers:
-    #     workers_json = {}
-    #     if sort_type == 1:
-    #         workers_json = wkr.surname + " " + wkr.name + " " + wkr.login
-    #     else: 
-    #         workers_json = wkr.login + " " + wkr.surname + " " + wkr.name 
-    #     results.append(workers_json)
-    # data = json.dumps(results)
-    # if data.count() == 0:
-    
-    data = workspaces_set.stage + " " + workspaces_set.xPos + " " + workspaces_set.yPos
+    data = workspaces_set[0].stage + " " + str(workspaces_set[0].xPos) + " " + str(workspaces_set[0].yPos)
     mimetype = 'application/json'
-    return HttpResponse(data, mimetype)
+    # return HttpResponse(data, mimetype)
+    redir_map = "map"+workspaces_set[0].stage
+    # redir_map = "/" + "map"+workspaces_set[0].stage
+    print ("redirection stage = " + redir_map)
+    # return HttpResponseRedirect('/'+ redir_map)
+    return render(request, ('map3R_name'))

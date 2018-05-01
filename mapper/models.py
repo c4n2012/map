@@ -11,6 +11,10 @@ class Workspace(models.Model):
         ('1L','Первый этаж левое крыло'),
         ('2R','Второй этаж правое крыло'),
         ('2L','Второй этаж левое крыло'),
+        ('3R','Третий этаж правое крыло'),
+        ('3L','Третий этаж левое крыло'),
+        ('4R','Четвертый этаж правое крыло'),
+        ('4L','Четвертый этаж левое крыло'),
     )
     stage = models.CharField("Этаж, крыло",max_length=2, choices=WORKSPACE_STAGE_CHOICES, default="__")
     workspaceNum = models.CharField(max_length=2,blank=True)
