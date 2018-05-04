@@ -90,8 +90,10 @@ def get_worker_position(request):
     data = workspaces_set[0].stage + " " + str(workspaces_set[0].xPos) + " " + str(workspaces_set[0].yPos)
     mimetype = 'application/json'
     # return HttpResponse(data, mimetype)
+    stage = workspaces_set[0].stage
     redir_map = "map"+workspaces_set[0].stage
     # redir_map = "/" + "map"+workspaces_set[0].stage
     print ("redirection stage = " + redir_map)
+    # css_maker(stage,workspaces_set)
     # return HttpResponseRedirect('/'+ redir_map)
-    return render(request, ('map3R_name'))
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})

@@ -12,8 +12,8 @@ $(".worker-input input").on("keypress", function (event) {
 		// $(".worker-input input").val("");
 		$.get("/api/get_worker_position/", {"login":worker_login}, function (response) {
 		// этот обратный вызов выполняется при ответе сервера
-			console.log("Мы отправили данные и получили ответ сервера!");
-			console.log(response);
+
+		console.log(response);
 			});
 	}
 });
