@@ -2,18 +2,19 @@
 "use strict";
 
 $(".worker-input button").on("click", function (event) {
-	console.log("Hello, World!");
+		var worker_login = $(".worker-input input").val();
+		$.get("/api/get_worker_position/", {"login":worker_login}, function (response) {
+				document.write(response);
+		});
 });
 $(".worker-input input").on("keypress", function (event) {
 	if (event.keyCode === 13) {
-		var worker_login;
-		worker_login = $(".worker-input input").val();
-		console.log(worker_login);
-		// $(".worker-input input").val("");
+		var worker_login = $(".worker-input input").val();
 		$.get("/api/get_worker_position/", {"login":worker_login}, function (response) {
 		// этот обратный вызов выполняется при ответе сервера
-
-		console.log(response);
+				// console.log(response);
+				// заменяем документ на пришедший от апи ответ
+				document.write(response);
 			});
 	}
 });

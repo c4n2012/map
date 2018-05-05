@@ -2,8 +2,13 @@
 max-width: 1540px;
 }
 .floor_map {
+  moz-user-select: none;
+  webkit-user-select: none;
+  ms-user-select: none; 
+  user-select: none;
+  pointer-events: none
   display: inline-block;
-  margin:20px;
+  margin-left:8%;
   width: 1500px;
   height: 715px;
 }
@@ -66,7 +71,7 @@ input[type=search] {
   padding-left:1em;
   padding-right: 30px;
   border: 1px solid SlateGrey;
-  width: 200px;
+  width: 300px;
   height: 30px;
   border-radius: 15px;
   color: SlateGrey;
@@ -74,7 +79,7 @@ input[type=search] {
   -webkit-appearance: none;
 }
 input:focus {
-  width: 40%;
+  width: 300 px;
   border-radius: 5px;
 }
 button {
