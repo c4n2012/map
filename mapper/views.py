@@ -6,6 +6,8 @@ from django.urls import reverse
 
 # Create your views here.
 css_file_path = 'mapper/static/styles/dynamic'
+#for pythonanywere
+## css_file_path = 'map/mapper/static/styles/dynamic'
 
 def workspaces_list(request):
     workspaces = Workspace.objects.filter(stage__contains='2R').order_by('id')
@@ -31,30 +33,90 @@ def css_maker(stage,workspaces_set):
         raw +="px) scale(1.1,1.2); opacity: 1;}"
         cssfile.write(raw + '\n')
     cssfile.close()
-     
+
+def map1R(request):
+    stage='1R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 def map2R(request):
     stage='2R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
-
 def map3R(request):
     stage='3R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
-
-def map2R_admin(request):
-    stage='2R'
+def map4R(request):
+    stage='4R'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
-    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 
+def map1L(request):
+    stage='1L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
 def map2L(request):
     stage='2L'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+def map3L(request):
+    stage='3L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+def map4L(request):
+    stage='4L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+
+def map1R_admin(request):
+    stage='1R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map2R_admin(request):
+    stage='2R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map3R_admin(request):
+    stage='3R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map4R_admin(request):
+    stage='4R'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+
+def map1L_admin(request):
+    stage='1L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map2L_admin(request):
+    stage='2L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map3L_admin(request):
+    stage='3L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
+def map4R_admin(request):
+    stage='4L'
+    workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
+    css_maker(stage,workspaces_set)
+    return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
 
 def get_worker(request):
     if request.is_ajax():
@@ -97,3 +159,4 @@ def get_worker_position(request):
     # css_maker(stage,workspaces_set)
     # return HttpResponseRedirect('/'+ redir_map)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
+

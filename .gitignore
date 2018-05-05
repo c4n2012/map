@@ -7,3 +7,4 @@ mapper/static/styles/dynamic??.css
 .DS_Store
 runweb.sh
 mainsite/settings.py
+.gitignore
