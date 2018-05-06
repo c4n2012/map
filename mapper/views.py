@@ -112,7 +112,7 @@ def map3L_admin(request):
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
     return render(request, 'mapper/map_admin.html', {'workspaces_set' : workspaces_set})
-def map4R_admin(request):
+def map4L_admin(request):
     stage='4L'
     workspaces_set = Workspace.objects.filter(stage__contains=stage).order_by('-xPos').order_by('yPos')
     css_maker(stage,workspaces_set)
