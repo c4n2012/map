@@ -116,3 +116,19 @@ button:before {
   left: 12px;
   top: 13px;
 }
+.stage_menu{
+  position: absolute;
+  width: 400px;
+  height: 78px;
+  /*background: url('stage_menu.png'); */
+  opacity: 1;
+  z-index: 200;
+  border-spacing:0;
+  transform: translate(600px, 650px);
+  line-height:0;
+  border-collapse:collapse;
+}
+.stage_menu_element:hover{
+    -webkit-filter:  brightness(150%) drop-shadow(1px 1px 1px gray); /* Safari */
+    filter:  brightness(150%) drop-shadow(1px 1px 1px gray);
+}

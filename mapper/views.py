@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Workspace, Worker
 from django.http import HttpResponse, HttpResponseRedirect
-import json, re
+import json, re, os, time
 from django.urls import reverse
 
 # Create your views here.
-css_file_path = 'mapper/static/styles/dynamic'
+css_file_refresh_interval = 60 # refresh css default interval 60 sec
+css_file_location = 'mapper/static/styles/dynamic'
 #for pythonanywere
 ## css_file_path = 'map/mapper/static/styles/dynamic'
 
@@ -14,25 +15,28 @@ def workspaces_list(request):
     return render(request, 'mapper/workspaces_list.html', {'workspaces' : workspaces})
 
 def css_maker(stage,workspaces_set):
-    cssfile = open(css_file_path + stage + '.css', 'w')
-    for workspace in workspaces_set:
-        raw = ".workspace-position-" 
-        raw += workspace.stage + str(workspace.id)
-        raw += " { transform: translate("
-        raw += str(workspace.xPos)
-        raw += "px, "
-        raw += str(workspace.yPos)
-        raw += "px) scale(1,1);background-position: 0px 0px;} "
-        cssfile.write(raw + '\n')
-        raw = ".workspace-position-"
-        raw += workspace.stage + str(workspace.id)
-        raw += ":hover{ transform: translate("
-        raw += str(workspace.xPos)
-        raw += "px, "
-        raw += str(workspace.yPos-5)
-        raw +="px) scale(1.1,1.2); opacity: 1;}"
-        cssfile.write(raw + '\n')
-    cssfile.close()
+    css_file_path_full = css_file_location + stage + '.css'
+    if time.time() - os.path.getmtime(css_file_path_full) > css_file_refresh_interval:
+        cssfile = open(css_file_path_full, 'w')
+        for workspace in workspaces_set:
+            raw = ".workspace-position-" 
+            raw += workspace.stage + str(workspace.id)
+            raw += " { transform: translate("
+            raw += str(workspace.xPos)
+            raw += "px, "
+            raw += str(workspace.yPos)
+            raw += "px) scale(1,1);background-position: 0px 0px;} "
+            cssfile.write(raw + '\n')
+            raw = ".workspace-position-"
+            raw += workspace.stage + str(workspace.id)
+            raw += ":hover{ transform: translate("
+            raw += str(workspace.xPos)
+            raw += "px, "
+            raw += str(workspace.yPos-5)
+            raw +="px) scale(1.1,1.2); opacity: 1;}"
+            cssfile.write(raw + '\n')
+        cssfile.close()
+    else: pass
 
 def map1R(request):
     stage='1R'
