@@ -16,7 +16,7 @@ def workspaces_list(request):
 
 def css_maker(stage,workspaces_set):
     css_file_path_full = css_file_location + stage + '.css'
-    if time.time() - os.path.getmtime(css_file_path_full) > css_file_refresh_interval:
+    if not os.path.isfile(css_file_path_full) or time.time() - os.path.getmtime(css_file_path_full) > css_file_refresh_interval:
         cssfile = open(css_file_path_full, 'w')
         for workspace in workspaces_set:
             raw = ".workspace-position-" 
