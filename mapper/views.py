@@ -8,7 +8,7 @@ from django.urls import reverse
 css_file_refresh_interval = 60 # refresh css default interval 60 sec
 css_file_location = 'mapper/static/styles/dynamic'
 #for pythonanywere
-## css_file_path = 'map/mapper/static/styles/dynamic'
+## css_file_location = 'map/mapper/static/styles/dynamic'
 
 def workspaces_list(request):
     workspaces = Workspace.objects.filter(stage__contains='2R').order_by('id')
