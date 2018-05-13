@@ -13,8 +13,23 @@ css_file_location = 'mapper/static/styles/dynamic'
 def workspaces_list(request):
     workspaces = Workspace.objects.filter(stage__contains='2R').order_by('id')
     return render(request, 'mapper/workspaces_list.html', {'workspaces' : workspaces})
-
 def css_maker(stage,workspaces_set):
+    css_file_path_full = css_file_location + stage + '.css'
+    if not os.path.isfile(css_file_path_full) or time.time() - os.path.getmtime(css_file_path_full) > css_file_refresh_interval:
+        cssfile = open(css_file_path_full, 'w')
+        for workspace in workspaces_set:
+            raw = ".workspace-position-" 
+            raw += workspace.stage + str(workspace.id)
+            raw += " { transform: translate("
+            raw += str(workspace.xPos)
+            raw += "px, "
+            raw += str(workspace.yPos)
+            raw += "px) scale(1,1);background-position: 0px 0px;} "
+            cssfile.write(raw + '\n')
+        cssfile.close()
+    else: pass    
+
+def css_maker_old(stage,workspaces_set):
     css_file_path_full = css_file_location + stage + '.css'
     if not os.path.isfile(css_file_path_full) or time.time() - os.path.getmtime(css_file_path_full) > css_file_refresh_interval:
         cssfile = open(css_file_path_full, 'w')

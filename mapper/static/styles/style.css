@@ -23,7 +23,16 @@ max-width: 1540px;
   width: 40px;
   height: 60px;
   background: url('green_icon.png');
-  opacity: 0.9;
+  opacity: 1;
+  outline-color: transparent;
+}
+.green_icon:hover{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 60px;
+  background: url('green_icon_lamp.png');
+  opacity: 1;
   outline-color: transparent;
 }
 .red_icon{
@@ -32,7 +41,16 @@ max-width: 1540px;
   width: 40px;
   height: 60px;
   background: url('red_icon.png');
-  opacity: 0.9;
+  opacity: 1;
+  outline-color: transparent;
+}
+.red_icon:hover{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 60px;
+  background: url('red_icon_lamp.png');
+  opacity: 1;
   outline-color: transparent;
 }
 .orange_icon{
@@ -41,7 +59,7 @@ max-width: 1540px;
   width: 40px;
   height: 60px;
   background: url('orange_icon.png');
-  opacity: 0.9;
+  opacity: 1;
   outline-color: transparent;
 }
 .warning_icon{
@@ -50,7 +68,7 @@ max-width: 1540px;
   width: 40px;
   height: 60px;
   background: url('warning_icon.png');
-  opacity: 0.9;
+  opacity: 1;
   outline-color: transparent;
 }
 
