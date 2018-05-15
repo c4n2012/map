@@ -27,12 +27,12 @@ class Workspace(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+def publish(self):
+    self.published_date = timezone.now()
+    self.save()
 
-    def __str__(self):
-        return self.stage+str(self.id)+" ........ "+str(self.ip)+" ......... "+str(self.phone)
+def __str__(self):
+    return self.stage+str(self.id)+" ........ "+str(self.ip)+" ......... "+str(self.phone)
 
 class Worker(models.Model):
     login = models.CharField(max_length=20,blank=True)

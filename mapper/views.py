@@ -5,7 +5,7 @@ import json, re, os, time
 from django.urls import reverse
 
 # Create your views here.
-css_file_refresh_interval = 60 # refresh css default interval 60 sec
+css_file_refresh_interval = 3 # refresh css default interval 60 sec
 css_file_location = 'mapper/static/styles/dynamic'
 #for pythonanywere
 ## css_file_location = 'map/mapper/static/styles/dynamic'
@@ -168,13 +168,13 @@ def get_worker_position(request):
         # print (reg.sub('',q[1]))
         worker_login_req = reg.sub('',worker_login_req[1]) # удаление из  логина плохих символов
         workspaces_set = Workspace.objects.filter(login__contains=worker_login_req).order_by('-xPos').order_by('yPos')
-    data = workspaces_set[0].stage + " " + str(workspaces_set[0].xPos) + " " + str(workspaces_set[0].yPos)
-    mimetype = 'application/json'
+    # data = workspaces_set[0].stage + " " + str(workspaces_set[0].xPos) + " " + str(workspaces_set[0].yPos)
+    # mimetype = 'application/json'
     # return HttpResponse(data, mimetype)
-    stage = workspaces_set[0].stage
-    redir_map = "map"+workspaces_set[0].stage
+    # stage = workspaces_set[0].stage
+    # redir_map = "map"+workspaces_set[0].stage
     # redir_map = "/" + "map"+workspaces_set[0].stage
-    print ("redirection stage = " + redir_map)
+    # print ("redirection stage = " + redir_map)
     # css_maker(stage,workspaces_set)
     # return HttpResponseRedirect('/'+ redir_map)
     return render(request, 'mapper/map.html', {'workspaces_set' : workspaces_set})
