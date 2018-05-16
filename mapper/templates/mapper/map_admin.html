@@ -14,7 +14,7 @@
 <body>
   <div class="container">
     <div class="floor_map">
-	 <img class="map_size" src='static/images/map{{ workspaces_set.first.stage }}_izometr.png' >
+	 <img class="map_size" src='static/images/map{{ workspaces_set.first.stage }}_izometr.jpg' >
 	 {% for space in workspaces_set %} 
 		{% if space.status == 0 %}
 		    <div tabindex="0" id="menu" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 

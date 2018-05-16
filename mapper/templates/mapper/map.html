@@ -12,7 +12,7 @@
 <body>	 <div class="ui-widget worker-input" style="z-index:500;">  <input id="worker_search" type="search" placeholder="Найти сотрудника" /> <button></button></div>
   <div class="container">
     <div class="floor_map">
-	 <img class="map_size" src="static/images/map{{ workspaces_set.first.stage }}_izometr.png" >
+	 <img class="map_size" src="static/images/map{{ workspaces_set.first.stage }}_izometr.jpg" >
 	 {% for space in workspaces_set %} 
 		{% if space.status == 0 %}
 		    <div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} green_icon" title="{{ space.stage }} {{ space.id }}"> 
