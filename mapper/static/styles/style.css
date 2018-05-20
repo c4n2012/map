@@ -215,7 +215,7 @@ button:before {
        /*border-right: 20px solid white;*/
         border: 10px solid white;
     background-clip: padding-box;
-    border-image: url('photo_border.svg') 15 repeat;
+    border-image: url('photo_border.svg') 20 repeat;
     border-image-outset: 1;
     border-image-width: 1.5;
     
