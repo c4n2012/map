@@ -19,9 +19,8 @@
 	    </div>
 		{% endif %}
 		{% if space.status == 1 %}
-		<div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon" title="{{ space.login }}"> 
-			<div id="onclick-menu-content">
-                        </div>
+		<div tabindex="0" id="{{ space.stage }}{{ space.id }}" class="workspace-position-{{ space.stage }}{{ space.id }} red_icon htooltip"> <span> <img src="static/images/roket.jpg">
+				login: {{ space.login }} <p> Ip: {{ space.ip }} </span>
 		</div>
 		{% endif %}
 		{% if space.status == 2 %}

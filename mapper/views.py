@@ -24,7 +24,7 @@ def css_maker(stage,workspaces_set):
             raw += str(workspace.xPos)
             raw += "px, "
             raw += str(workspace.yPos)
-            raw += "px) scale(1,1);background-position: 0px 0px;} "
+            raw += "px) scale(0.7,0.7);background-position: 0px 0px;} "
             cssfile.write(raw + '\n')
         cssfile.close()
     else: pass    
